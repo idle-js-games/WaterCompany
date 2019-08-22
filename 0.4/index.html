@@ -1,5 +1,7 @@
+<!doctype html>
 <html lang="en" style="background: linear-gradient(to right, #459ABF, #4AA8C9); ">
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<script>
 			function msieversion(){
 				var ua = window.navigator.userAgent;
@@ -12,27 +14,18 @@
 			}
 			msieversion();
 		</script>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-97511038-1', 'auto');
+			ga('send', 'pageview');
+		</script>
 		<meta charset="UTF-8">
 		<title>Water Company: Recoded</title>
-		<!-- Start of StatCounter Code for Default Guide -->
-		<script type="text/javascript">
-			var sc_project=11393695; 
-			var sc_invisible=1; 
-			var sc_security="fc228861"; 
-			var scJsHost = (("https:" == document.location.protocol) ?
-			"https://secure." : "http://www.");
-			document.write("<sc"+"ript type='text/javascript' src='" +
-			scJsHost+
-			"statcounter.com/counter/counter.js'></"+"script>");
-			</script>
-			<noscript><div class="statcounter"><a title="web analytics"
-			href="http://statcounter.com/" target="_blank"><img
-			class="statcounter"
-			src="//c.statcounter.com/11393695/0/fc228861/1/" alt="web
-		analytics"></a></div></noscript>
-		<!-- End of StatCounter Code for Default Guide -->
 		<script src="js/lib/jQuery.js"></script>
-		
 		<script src="js/lib/bootstrap.js"></script>
 		<link rel="stylesheet" href="css/lib/bootstrap-standart.css" />
 		<script src="js/lib/sweetalert.min.js"></script>
@@ -45,7 +38,7 @@
 			.tab-pane{
 				height:65%;
 			}
-			.tab-pane > table, .tab-pane > p{
+			.tab-pane > table, .tab-pane > p, .customtab > table, .customtab > p {
 				float: left;
 				width: auto;
 				max-width: 82.5%
@@ -56,6 +49,12 @@
 			#notfluid > tr > td, th{
 				width: auto;
 			}
+			.spacer{
+				clear: both;
+			}
+			.clear {
+				clear: both;
+			}
 		</style>
 	</head>
 	<body style="padding: 2.5px; max-width: 1150px; min-width: 975px;margin: 0 auto;padding: 10px 2px 10px 2px;">
@@ -64,8 +63,7 @@
 			<tr>
 				<td>Money</td>
 				<td>$<span id="money"></span> <span id="income"></span></td>
-				
-				
+				<td colspan="10"></td>
 			</tr>
 			<tr>
 				<th class="xs-6" colspan="4">Cold water</th>
@@ -164,30 +162,31 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 						<td id="tab1hotwaterusage"></td>
 					</tr>
 				</table>
+				<div class="spacer"></div>
 			</div>
 			<div id="tab2" class="tab-pane">
 				<ul class="nav nav-stacked " style="font-size: 17px; float: left;">
 					<li><a>Cold water</a>
 						<ul>
-							<li><a data-toggle="tab" href="#upgradestabs1">Pumps</a></li>
-							<li><a data-toggle="tab" href="#upgradestabs2">Treatment plants</a></li>
-							<li><a data-toggle="tab" href="#upgradestabs3">Water storage</a></li>
-							<li><a data-toggle="tab" href="#upgradestabs4">Pipes</a></li>
+							<li onclick="goTab(1);"><a>Pumps</a></li>
+							<li onclick="goTab(2);"><a>Treatment plants</a></li>
+							<li onclick="goTab(3);"><a>Water storage</a></li>
+							<li onclick="goTab(4);"><a>Pipes</a></li>
 						</ul>	
 						
 					</li>
 					<li><a>Hot water</a>
 						<ul>
-							<li><a data-toggle="tab" href="#upgradestabs5">Pumps</a></li>
-							<li><a data-toggle="tab" href="#upgradestabs6">Heating plants</a></li>
-							<li><a data-toggle="tab" href="#upgradestabs7">Heat pipes</a></li>
+							<li onclick="goTab(5);"><a>Pumps</a></li>
+							<li onclick="goTab(6);"><a>Heating plants</a></li>
+							<li onclick="goTab(7);"><a>Heat pipes</a></li>
 						</ul>
 					</li>
-					<li><a data-toggle="tab" href="#upgradestabs8">Houses</a></li>
-					<li><a data-toggle="tab" href="#upgradestabs9">Bank</a></li>
+					<li onclick="goTab(8);"><a>Houses</a></li>
+					<li onclick="goTab(9);"><a>Bank</a></li>
 				</ul>
 				<div class="tab-content">
-					<div id="upgradestabs1" class="tab-pane active">
+					<div id="upgradestabs1" class="customtab">
 						<table class="table">
 							<tr>
 								<td>
@@ -212,8 +211,9 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								</td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
-					<div id="upgradestabs2" class="tab-pane">
+					<div id="upgradestabs2" class="customtab hidden">
 						<table class="table">
 							<tr>
 								<td>
@@ -237,8 +237,9 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								</td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
-					<div id="upgradestabs3" class="tab-pane">
+					<div id="upgradestabs3" class="customtab hidden">
 						<table class="table">
 							<tr>
 								<td>
@@ -263,8 +264,9 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								</td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
-					<div id="upgradestabs4" class="tab-pane">
+					<div id="upgradestabs4" class="customtab hidden">
 						<table class="table">
 							<tr>
 								<td>
@@ -283,8 +285,9 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								</td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
-					<div id="upgradestabs5" class="tab-pane">
+					<div id="upgradestabs5" class="customtab hidden">
 						<table class="table">
 							<tr>
 								<td>
@@ -295,7 +298,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 									hot water pump <span id="uptab5hotwaterprodb3"></span> m<sup>3</sup>-><span id="uptab5hotwaterproda3"></span> m<sup>3</sup>
 								</td>
 								<td>
-									<button onclick="upgrade('hotwater', 'pumpprod', 1.1, 'hotwaterpumpprod', 1.2, 4)" class="btn btn-success">$<span id="hotwaterpumpprod"></span></button></button>
+									<button onclick="upgrade('hotwater', 'pumpprod', 1.1, 'hotwaterpumpprod', 1.2, 4)" class="btn btn-success">$<span id="hotwaterpumpprod"></span></button>
 								</td>
 								<td>
 									Decrease operating cost of hot water pumps by 10%<br />
@@ -309,8 +312,9 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								</td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
-					<div id="upgradestabs6" class="tab-pane">
+					<div id="upgradestabs6" class="customtab hidden">
 						<table class="table">
 							<tr>
 								<td>
@@ -335,8 +339,9 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								</td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
-					<div id="upgradestabs7" class="tab-pane">
+					<div id="upgradestabs7" class="customtab hidden">
 						<table class="table">
 							<tr>
 								<td>
@@ -355,8 +360,9 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								</td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
-					<div id="upgradestabs8" class="tab-pane">
+					<div id="upgradestabs8" class="customtab hidden">
 						<table class="table">
 							<tr>
 								<th colspan="2">Cold water</th>
@@ -404,8 +410,9 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								</td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
-					<div id="upgradestabs9" class="tab-pane">
+					<div id="upgradestabs9" class="customtab hidden">
 						<table class="table">
 							<tr>
 								<td>
@@ -424,8 +431,10 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								</td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
 				</div>
+				<div class="spacer"></div>
 			</div>
 			<div id="tab3" class="tab-pane">
 				<ul class="nav nav-stacked" style="font-size: 17px;">
@@ -447,7 +456,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 									<button onclick="refnumber('watertab1number', 100, 'watertab1number', 'watertab1total', 'coldwater', 'pumpprice')" class="btn btn-info">100</button>
 								</td>
 								<td>
-									<input onkeyup="var number = document.getElementById('watertab1numberinput').value;if(Number(number)>0){refnumber('watertab1number', Number(number), 'watertab1number', 'watertab1total', 'coldwater', 'pumpprice');}" id="watertab1numberinput" class="form-control" style="width: auto;"></input>
+									<input onkeyup="var number = document.getElementById('watertab1numberinput').value;if(Number(number)>0){refnumber('watertab1number', Number(number), 'watertab1number', 'watertab1total', 'coldwater', 'pumpprice');}" id="watertab1numberinput" class="form-control" style="width: auto;" />
 								</td>
 							</tr>
 							<tr>
@@ -458,7 +467,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 									<button onclick="refnumber('watertab1numbersell', 100, 'watertab1numbersell', 'watertab1totalsell', 'coldwater', 'pumpprice')" class="btn btn-info">100</button>
 								</td>
 								<td>
-									<input onkeyup="var number = document.getElementById('watertab1numberinputsell').value;if(Number(number)>0){refnumber('watertab1numbersell', Number(number), 'watertab1numbersell', 'watertab1totalsell', 'coldwater', 'pumpprice');}" id="watertab1numberinputsell" class="form-control" style="width: auto;"></input>
+									<input onkeyup="var number = document.getElementById('watertab1numberinputsell').value;if(Number(number)>0){refnumber('watertab1numbersell', Number(number), 'watertab1numbersell', 'watertab1totalsell', 'coldwater', 'pumpprice');}" id="watertab1numberinputsell" class="form-control" style="width: auto;" />
 								</td>
 							</tr>
 						</table>
@@ -526,6 +535,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								<td id="tab3ptopec3"></td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
 					<div id="watertab2" class="tab-pane">
 						<p>Water storage is used to store water like water towers. When there is too much water, it is stored if possible. When there is a shortage of water, the water from the tower is used.</p>
@@ -618,6 +628,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								<td id="tab3stopec3"></td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
 					<div id="watertab3" class="tab-pane">
 						<p>Thanks to the treatment plant you don't need to pay fines for dirty water being disposed. Be aware that for every 1000 m3 you dispose in river you need to pay $100.</p>
@@ -710,6 +721,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								<td id="tab3ttopec3"></td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
 					<div id="watertab4" class="tab-pane">
 						<p>Pipes are the most important thing for your company. Without them you can't supply people with water. They are the main source of money. Each pipe supplies 2 houses at a time.</p>
@@ -753,8 +765,10 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								<td colspan="2"><button onclick="buypipes(watertab4placenumber, 'coldwater', 1)" class="btn btn-success">Place <span id="watertab4place"></span> for $<span id="watertab4placeprice"></span></button></td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
 				</div>
+				<div class="spacer"></div>
 			</div>
 			<div id="tab4" class="tab-pane">
 				<ul class="nav nav-stacked" style="font-size: 17px;">
@@ -773,7 +787,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 									<button onclick="refnumber('watertab5number', 100, 'watertab5number', 'watertab5total', 'hotwater', 'pumpprice')" class="btn btn-info">100</button>
 								</td>
 								<td>
-									<input onkeyup="var number = document.getElementById('watertab5numberinput').value;if(Number(number)>0){refnumber('watertab5number', Number(number), 'watertab5number', 'watertab5total', 'hotwater', 'pumpprice');}" id="watertab5numberinput" class="form-control" style="width: auto;"></input>
+									<input onkeyup="var number = document.getElementById('watertab5numberinput').value;if(Number(number)>0){refnumber('watertab5number', Number(number), 'watertab5number', 'watertab5total', 'hotwater', 'pumpprice');}" id="watertab5numberinput" class="form-control" style="width: auto;" />
 								</td>
 							</tr>
 							<tr>
@@ -784,7 +798,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 									<button onclick="refnumber('watertab5numbersell', 100, 'watertab5numbersell', 'watertab5totalsell', 'hotwater', 'pumpprice')" class="btn btn-info">100</button>
 								</td>
 								<td>
-									<input onkeyup="var number = document.getElementById('watertab5numberinput').value;if(Number(number)>0){refnumber('watertab5number', Number(number), 'watertab5number', 'watertab5total', 'hotwater', 'pumpprice');}" id="watertab5numberinput" class="form-control" style="width: auto;"></input>
+									<input onkeyup="var number = document.getElementById('watertab5numberinput').value;if(Number(number)>0){refnumber('watertab5number', Number(number), 'watertab5number', 'watertab5total', 'hotwater', 'pumpprice');}" id="watertab5numberinput" class="form-control" style="width: auto;" />
 								</td>
 							</tr>
 						</table>
@@ -852,6 +866,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								<td id="tab5hptopec3"></td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
 					<div id="watertab6" class="tab-pane">
 						<table>
@@ -863,7 +878,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 									<button onclick="refnumber('watertab6number', 100, 'watertab6number', 'watertab6total', 'hotwater', 'heatingplantprice')" class="btn btn-info">100</button>
 								</td>
 								<td>
-									<input onkeyup="var number = document.getElementById('watertab6numberinput').value;if(Number(number)>0){refnumber('watertab6number', Number(number), 'watertab6number', 'watertab6total', 'hotwater', 'pumpprice');}" id="watertab6numberinput" class="form-control" style="width: auto;"></input>
+									<input onkeyup="var number = document.getElementById('watertab6numberinput').value;if(Number(number)>0){refnumber('watertab6number', Number(number), 'watertab6number', 'watertab6total', 'hotwater', 'pumpprice');}" id="watertab6numberinput" class="form-control" style="width: auto;" />
 								</td>
 							</tr>
 							<tr>
@@ -874,7 +889,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 									<button onclick="refnumber('watertab6numbersell', 100, 'watertab6numbersell', 'watertab6totalsell', 'hotwater', 'heatingplantprice')" class="btn btn-info">100</button>
 								</td>
 								<td>
-									<input onkeyup="var number = document.getElementById('watertab6numberinputsell').value;if(Number(number)>0){refnumber('watertab6numbersell', Number(number), 'watertab6numbersell', 'watertab6totalsell', 'hotwater', 'pumpprice');}" id="watertab6numberinput" class="form-control" style="width: auto;"></input>
+									<input onkeyup="var number = document.getElementById('watertab6numberinputsell').value;if(Number(number)>0){refnumber('watertab6numbersell', Number(number), 'watertab6numbersell', 'watertab6totalsell', 'hotwater', 'pumpprice');}" id="watertab6numberinput" class="form-control" style="width: auto;" />
 								</td>
 							</tr>
 						</table>
@@ -894,7 +909,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								<td id="tab6hpprice0"></td>
 								<td>
 									<button onclick="buy('hotwater', 'heatingplant', watertab6number, 0)" class="btn btn-success">Buy <span id="watertab6number0"></span> - $<span id="watertab6total0"></span></button>
-									<button onclick="sell('hotwater', 'heatingplant', watertab6numbersell, 0)" class="btn btn-danger">Buy <span id="watertab6numbersell0"></span> - $<span id="watertab6totalsell0"></span></button>
+									<button onclick="sell('hotwater', 'heatingplant', watertab6numbersell, 0)" class="btn btn-danger">Sell <span id="watertab6numbersell0"></span> - $<span id="watertab6totalsell0"></span></button>
 								</td>
 								<td id="tab6hpowned0"></td>
 								<td id="tab6hpprodu0"></td>
@@ -942,6 +957,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 								<td id="tab6hptopec3"></td>
 							</tr>
 						</table>
+						<div class="clear"></div>
 					</div>
 					<div id="watertab7" class="tab-pane">
 						<p>Pipes are the most important thing for your company. Without them you can't supply people with water. They are the main source of money. Each pipe supplies 2 houses at a time.</p>
@@ -987,6 +1003,7 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 						</table>
 					</div>
 				</div>
+				<div class="spacer"></div>
 			</div>
 			<div id="tab5" class="tab-pane">
 				<table class="table">
@@ -1035,7 +1052,8 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 					</tr>
 				</table>
 				<br />
-				</div>
+				<div class="clear"></div>
+			</div>
 			<div id="tab6" class="tab-pane">
 				<center><h2>Profit statement</h2></center>
 				<table class="table table-bordered">
@@ -1072,63 +1090,58 @@ swal('Nice!', 'You city is called: ' + inputValue + '.');game.city.name = inputV
 						<th colspan="2" id="profit"></th>
 					</tr>
 				</table>
+				<div class="clear"></div>
 			</div>
 			<div id="tab7" class="tab-pane" style="height: auto;">
 				<h3 class="text">Frequently Asked Questions</h3>
 				<h4>Why do I have one hot water pipe placed from the beginnings?</h4>
 				<p>If there weren't, that will cause a mess in the code because of an infinite loop and that is easier for me :P</p>
-				<br>
-				</br>
+				<br />
 				<hr />
 				<h4>I've found a bug. What should I do?</h4>
 				<p>You should report it in <a href="https://www.reddit.com/r/WaterCompany/comments/6cttcl/bugs_and_glitches/" target="_blank">this reddit post</a> or you can open a new issue in github on <a href="https://github.com/Dimitar5555/WaterCompany/issues" target="_blank">this</a> address.</p>
-				<br>
-				</br>
+				<br />
 				<hr />
 				<h4>I've got a suggestion/feature for the game. Where can I share my idea?</h4>
 				<p>You can <a href="https://www.reddit.com/r/WaterCompany/comments/6cttiy/suggestions/" target="_blank">add your suggestion</a> to reddit.</p>
-				<br>
-				</br>
+				<br />
 				<hr />
 				<h4>Why do I need treatment plant and what will happen if I don't have?</h4>
 				<p>The treatment plant cleans the water from sewage. If you let not treated water to the river, you will pay a fine of $1000 for every 10000m<sup>3</sup> not treated water.</p>
-				<br>
-				</br>
+				<br />
 				<hr />
 				<h4>What will happen if I can't supply enough water?</h4>
 				<p>Simply people will pay for the water you supplied. If you supply 10m<sup>3</sup>, but they need 20m<sup>3</sup>, people will pay for 10m<sup>3</sup> only.</p>
-				<br>
-				</br>
+				<br />
 				<hr />
 				<h4>How does the bank loan system work?</h4>
 				<p>On the next day at 00:00 the bank will take 1/100 of the loan from your money. If you don't have enough money, your loan will increase by the percentage of the loan interest.</p>
-				<br>
-				</br>
+				<br />
 				<hr />
 				<h4>I want to get x money via loan, but I can't. Why?</h4>
 				<p>You can't have a loan bigger than 100k. It can go higher if you don't have enough money to pay the tax.</p>
-				<br>
-				</br>
+				<br />
 				<hr />
 				<h4>How does the bank balance work?</h4>
 				<p>You can put money in it. Every day at 00:00 you get interest for your money in your cash on hand(or back in the bank depends on the option selected).</p>
-				<br>
-				</br>
+				<br />
 				<hr />
 				<h4>How are operating costs calculated?</h4>
 				<p>Everything has an operating cost(except pipes). Even if you don't use it or you use it very little, the operating cost won't change.</p>
-				<br>
-				</br>
+				<br />
+				<div class="clear"></div>
 			</div>
 			<div id="tab8" class="tab-pane">
 				<h3>Basic tutorial</h3>
 				<p>You start with 10 placed pipes for cold water. Each pipe can supply 2 houses. Each house requires 2m<sup>3</sup> water(if you haven't bought the upgrade for increasing the required water in upgrades tab > houses). So you need to supply 10*2*2 = 40m<sup>3</sup> per in game hour. With your pump, you pump 100m<sup>3</sup> per in game hour, so they have enough water. You can supply more houses by buying and placing more pipes. That is good, but after some time your income will not go up. Why? You can't supply enough water. You need to buy another pump. But then you see in finance tab there is fines. What is that thing? Why am I getting fined? You supply people with water, but your treatment plant can't treat all the water. The untreated water is send back in river and it is polluting it. How to fix this? Buy a treatment plant. A note: treatment plants have double the price of a pump and double operating costs compared to a pump.</p>
+				<div class="clear"></div>
 			</div>
 			<div id="tab9" class="tab-pane">
 				The game is autosaved every ingame day.
 				<script>reset = 0;</script>
 				<button class="btn btn-success" onclick="localStorage.setItem('save', JSON.stringify(game))">Save</button>
 				<button class="btn btn-danger" onclick="reset = reset + 1; if(reset>=3){localStorage.setItem('save', ''); location.reload();}">Reset game</button>
+				<div class="clear"></div>
 			</div>
 			<div id="tab10" class="tab-pane"></div>
 		</div>
