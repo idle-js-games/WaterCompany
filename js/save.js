@@ -1,18 +1,18 @@
 function chechSaveFile() {
 	if(localStorage.upgradesPrices && localStorage.pumptreat && localStorage.prices && localStorage.other){
 		var pumptreat = JSON.parse(localStorage.pumptreat);
-		pumps = [pumptreat[0][0], pumptreat[0][1], pumptreat[0][2], pumptreat[0][3]];
-		pumpProd = [pumptreat[1][0], pumptreat[1][1], pumptreat[1][2], pumptreat[1][3]];
-		pumpPrice = [pumptreat[2][0], pumptreat[2][1], pumptreat[2][2], pumptreat[2][3]];
-		treatPla = [pumptreat[3][0], pumptreat[3][1], pumptreat[3][2], pumptreat[3][3]];
-		treatProd = [pumptreat[4][0], pumptreat[4][1], pumptreat[4][2], pumptreat[4][3]];
-		treatPrice =[pumptreat[5][0], pumptreat[5][1], pumptreat[5][2], pumptreat[5][3]];
-		pumpCost = [pumptreat[6][0], pumptreat[6][1], pumptreat[6][2], pumptreat[6][3]];
-		treatCost = [pumptreat[7][0], pumptreat[7][1], pumptreat[7][2], pumptreat[7][3]];
-		stWCost = [pumptreat[8][0], pumptreat[8][1], pumptreat[8][2], pumptreat[8][3]];
-		stWPrice = [pumptreat[9][0], pumptreat[9][1], pumptreat[9][2], pumptreat[9][3]];
-		stWProd = [pumptreat[10][0], pumptreat[10][1], pumptreat[10][2], pumptreat[10][3]];
-		stWC = [pumptreat[11][0], pumptreat[11][1], pumptreat[11][2], pumptreat[11][3]];
+		pumps = pumptreat[0];
+		pumpProd = pumptreat[1];
+		pumpPrice = pumptreat[2];
+		treatPla = pumptreat[3];
+		treatProd = pumptreat[4];
+		treatPrice =pumptreat[5];
+		pumpCost = pumptreat[6];
+		treatCost = pumptreat[7];
+		stWCost = pumptreat[8];
+		stWPrice = pumptreat[9];
+		stWProd = pumptreat[10];
+		stWC = pumptreat[11];
 		
 		var other = JSON.parse(localStorage.other);
 		selectedCity = other[0];
@@ -22,11 +22,11 @@ function chechSaveFile() {
 		price = other[4];
 		PP = other[5];
 		PO = other[6];
-		money = other[7];
+		money = parseFloat(other[7]);
 		hour = other[8];
 		day = other[9];
 		incRateHouses = other[10];
-		curBalance = other[11];
+		curBalance = parseFloat(other[11]);
 		interest = other[12];
 		stW = other[13];
 		year = other[14];
@@ -64,14 +64,14 @@ function chechSaveFile() {
 		fast = 500;
 		
 		var heatWater = JSON.parse(localStorage.hotWater);
-		HWpumpProd = [heatWater[0][0], heatWater[0][1], heatWater[0][2], heatWater[0][3]];
-		HWpump = [heatWater[1][0], heatWater[1][1], heatWater[1][2], heatWater[1][3]];
-		HWpumpPrice = [heatWater[2][0], heatWater[2][1], heatWater[2][2], heatWater[2][3]];
-		HWpumpOpC = [heatWater[3][0], heatWater[3][1], heatWater[3][2], heatWater[3][3]];
-		HWHFProd = [heatWater[4][0], heatWater[4][1], heatWater[4][2], heatWater[4][3]];
-		HWHFPrice = [heatWater[5][0], heatWater[5][1], heatWater[5][2], heatWater[5][3]];
-		HWHFOpC = [heatWater[6][0], heatWater[6][1], heatWater[6][2], heatWater[6][3]];
-		HWHF = [heatWater[7][0], heatWater[7][1], heatWater[7][2], heatWater[7][3]];
+		HWpumpProd = heatWater[0];
+		HWpump = heatWater[1];
+		HWpumpPrice = heatWater[2];
+		HWpumpOpC = heatWater[3];
+		HWHFProd = heatWater[4];
+		HWHFPrice = heatWater[5];
+		HWHFOpC = heatWater[6];
+		HWHF = heatWater[7];
 		HPO = heatWater[8];
 		HPPP = heatWater[9];
 		HPOprice = heatWater[10];
@@ -101,31 +101,31 @@ function chechSaveFile() {
 		gEBI("extraW").innerHTML = s(b);
 		MSW = stWC[0]*stWProd[0] + stWC[1]*stWProd[1] + stWC[2]*stWProd[2] + stWC[3]*stWProd[3];
 		var opC = pumps[0] * pumpCost[0] + pumps[1] * pumpCost[1] + pumps[2] * pumpCost[2] + pumps[3] * pumpCost[3]	+ treatPla[0] * treatCost[0] + treatPla[1] * treatCost[1] + treatPla[2] * treatCost[2] + treatPla[3] * treatCost[3] + stWC[0] * stWCost[0] + stWC[1] * stWCost[1] + stWC[2] * stWCost[2] + stWC[3] * stWCost[3];
-			
-		for(i=0;i<times;i++){
-			stWB = stW;
-			stW = stW + PW;
-			if(stW-UW>=0){
-				SW = UW;
-				stW = stW - UW;
-				if(UW>TW){
-					fine = UW - TW;
-				}
-				else{
-					fine = 0;
-				}
+		
+		stWB = stW;
+		stW = stW + PW;
+		if(stW-UW>=0){
+			SW = UW;
+			stW = stW - UW;
+			if(UW>TW){
+				fine = UW - TW;
 			}
 			else{
-				SW = stW;
-				stW = 0;
-				if(SW>TW){
-					fine = SW - TW;
-				}
-				else{
-					fine = 0;
-				}
+				fine = 0;
 			}
-			add = SW * price - (fine/10000)*1000 - opC;
+		}
+		else{
+			SW = stW;
+			stW = 0;
+			if(SW>TW){
+				fine = SW - TW;
+			}
+			else{
+				fine = 0;
+			}
+		}
+		add = SW * price - (fine/10000)*1000 - opC;	
+		for(i=0;i<times;i++){
 			money = money + add;
 			hour = hour + 1;
 			if(hour>=24){
@@ -148,10 +148,10 @@ function chechSaveFile() {
 				day = day - 365;
 			}
 		}
+		refMoney(add);
 		gEBI("time").innerHTML = hour + ":00";
 		gEBI("NW").innerHTML = s(UW);
 		gEBI("stW").innerHTML = s(stW);
-		refMoney(add);
 		gEBI("trt").innerHTML = s(TW);
 		gEBI("prd").innerHTML = s(PW);
 		gEBI("curBalance").innerHTML = s(curBalance);
